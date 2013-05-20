@@ -24,20 +24,20 @@ class Field
         $this->yAxisPositon = $yAxisPosition;
     }
     
-    public function getXAxisPositon()
+    public function getXAxisPosition()
     {
         return $this->xAxisPositon;
     }
     
-    public function getYAxisPositon()
+    public function getYAxisPosition()
     {
         return $this->yAxisPositon;
     }
     
     public function isValid()
     {
-        return ($this->getXAxisPositon() > 0 && $this->getXAxisPositon() <= 7)
-                && ($this->getYAxisPositon() > 0 && $this->getYAxisPositon() <= 7);
+        return ($this->getXAxisPosition() > 0 && $this->getXAxisPosition() <= 7)
+                && ($this->getYAxisPosition() > 0 && $this->getYAxisPosition() <= 7);
     }
     
     public static function isValidS(int $xAxisPositon, int $yAxisPositon)

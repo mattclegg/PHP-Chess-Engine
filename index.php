@@ -15,6 +15,7 @@ class x
     {
         $this->k = new King(new Field(5,2));
         $this->k->moveTo(new Field(5,2));
+        echo $this->k->getCurrentField()->getYAxisPosition();
     }
 }
 $x = new x();

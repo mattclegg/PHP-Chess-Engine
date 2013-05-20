@@ -27,6 +27,7 @@ class Piece
         if(!$this->isCaptured())
         {
             $this->moveBehavior->move($this->getCurrentField(), $newField);
+            $this->currentField = $newField;
         }
         else
         {
