@@ -2,11 +2,11 @@
 
 namespace ShinnyChess\Moves;
 
-use ShinnyChess\Moves\AllDirectionMove;
+use ShinnyChess\Moves\QueenMove;
 use ShinnyChess\Board\Field;
 use ShinnyChess\Exceptions\MoveException;
 
-class KingMove extends AllDirectionMove
+class KingMove extends QueenMove
 {
     public function canMove(Field $currentField, Field $newField)
     {

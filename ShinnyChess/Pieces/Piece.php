@@ -3,13 +3,12 @@
 namespace ShinnyChess\Pieces;
 
 use ShinnyChess\Board\Field;
+use ShinnyChess\Game;
 
 class Piece
 {
     protected $captured = false;
     
-    protected $owner;
-
     protected $moveBehavior;
     
     protected $color;
@@ -27,12 +26,14 @@ class Piece
         return $this->captured;
     }
     
-    public function moveTo(Field $newField)
+    public function moveTo($newPosition)
     {
+        $newField = new Field($newPosition);
         if(!$this->isCaptured())
         {
             if($this->moveBehavior->canMove($this->getCurrentField(), $newField))
             {
+                Game::getInstance()->getBoard()->movePiece($this->getCurrentField(), $newField);
                 $this->currentField = $newField;
                 return true;
             }
