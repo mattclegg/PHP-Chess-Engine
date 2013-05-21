@@ -49,10 +49,9 @@ class RepresentationParser
             {
                 $color = Color::getColorFromString($piece['color']);
                 
-                $x = new Field($piece['position']);
+                $field = new Field($piece['position']);
                 
-                $pieces[] = PieceFactory::createPiece($piece['piece'], $color, 
-                        new Field($piece['position']));
+                $pieces[$field->getFieldIdentifier()] = PieceFactory::createPiece($piece['piece'], $color);
             }
             else
             {

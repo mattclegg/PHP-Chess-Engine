@@ -17,5 +17,5 @@ $game = Game::getInstance();
 $game->addRepresentation('[{"piece":"king","color":"w","position":"a7"}]');
 
 var_dump($game->getBoard());
-$game->getBoard()->getPieceAtPosition('a7')->moveTo("a6");
-var_dump($game->getBoard());
+//$game->getBoard()->getPieceAtPosition('a7')->moveTo("a6");
+//var_dump($game->getBoard());

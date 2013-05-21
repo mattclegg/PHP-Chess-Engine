@@ -44,9 +44,9 @@ class Game
         
         $this->board = new Board();
         
-        foreach ($pieces as $piece)
+        foreach ($pieces as $position => $piece)
         {
-            $this->board->addPiece($piece);
+            $this->board->addPiece($piece, $position);
         }
         
         $this->initialized = true;

@@ -12,13 +12,10 @@ class Piece
     protected $moveBehavior;
     
     protected $color;
-    
-    protected $currentField;
 
-    public function __construct($color, Field $currentField = null)
+    public function __construct($color)
     {
         $this->color = $color;
-        $this->currentField = $currentField;
     }
     
     public function isCaptured()
@@ -26,15 +23,15 @@ class Piece
         return $this->captured;
     }
     
-    public function moveTo($newPosition)
+    public function moveTo($currentPosition, $newPosition)
     {
         $newField = new Field($newPosition);
+        $currentField = new Field($currentPosition);
         if(!$this->isCaptured())
         {
-            if($this->moveBehavior->canMove($this->getCurrentField(), $newField))
+            if($this->moveBehavior->canMove($currentField, $newField))
             {
-                Game::getInstance()->getBoard()->movePiece($this->getCurrentField(), $newField);
-                $this->currentField = $newField;
+                Game::getInstance()->getBoard()->movePiece($currentField, $newField);
                 return true;
             }
             else
@@ -53,8 +50,4 @@ class Piece
         return $this->color;
     }
     
-    public function getCurrentField()
-    {
-        return $this->currentField;
-    }
 }

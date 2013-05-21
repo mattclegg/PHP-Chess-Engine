@@ -11,9 +11,9 @@ class Board
     
     private $capturedPieces = array();
     
-    public function addPiece(Piece $piece)
+    public function addPiece(Piece $piece, $position)
     {
-        $this->filledFields[$piece->getCurrentField()->getFieldIdentifier()] = $piece;
+        $this->filledFields[$position] = $piece;
     }
     
     public function getPieceAtPosition($position)
