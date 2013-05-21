@@ -1,11 +1,9 @@
 <?php
 
-
 function __autoload($class_name)
 {
     $fileName = $class_name . '.php';
     $fileName = str_replace('\\', '/', $fileName);
-//    var_dump(is_file($fileName)); echo $fileName;
     if(is_file($fileName))
     {
         include $fileName;

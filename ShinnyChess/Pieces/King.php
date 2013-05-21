@@ -8,9 +8,9 @@ use ShinnyChess\Board\Field;
 
 class King extends Piece
 {
-    public function __construct(Field $currentField = null)
+    public function __construct($color, Field $currentField = null)
     {
-        parent::__construct($currentField);
+        parent::__construct($color, $currentField);
         $this->moveBehavior = new CrossMove();
     }
 }

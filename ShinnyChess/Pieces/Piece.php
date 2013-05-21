@@ -6,14 +6,18 @@ use ShinnyChess\Board\Field;
 
 class Piece
 {
-    private $captured = false;
+    protected $captured = false;
     
-    private $currentField = false;
+    protected $owner;
 
     protected $moveBehavior;
     
-    public function __construct(Field $currentField = null)
+    protected $color;
+
+
+    public function __construct($color, Field $currentField = null)
     {
+        $this->color = $color;
         $this->currentField = $currentField;
     }
     
@@ -35,8 +39,8 @@ class Piece
         }
     }
     
-    public function getCurrentField()
+    public function getColor()
     {
-        return $this->currentField;
+        return $this->color;
     }
 }
