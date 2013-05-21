@@ -6,4 +6,5 @@ include 'autoload.php';
 
 use ShinnyChess\Game;
 
-$x = new Game('[{"piece":"king","color":"w","position":"a7"},{"piece":"king","color":"b","position":[5,4]}]');
+//$x = new Game('[{"piece":"king","color":"w","position":"a7"},{"piece":"king","color":"b","position":[5,4]}]');
+$x = new Game('[{"piece":"king","color":"w","position":"a1"}]');

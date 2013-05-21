@@ -15,15 +15,15 @@ class Field
     {
         if(is_array($boardPosition) && RepresentationValidator::isValidFieldArray($boardPosition))
         {
-            $this->setXAxisPositon($boardPosition[0]);
-            $this->setYAxisPositon($boardPosition[1]);
+            $this->setXAxisPosition($boardPosition[0]);
+            $this->setYAxisPosition($boardPosition[1]);
         }
         else if(!is_array($boardPosition) && RepresentationValidator::isValidAlgebraicNotation($boardPosition))
         {
             $matrixPositions = $this->getMatrixPositionFromAlgebriacNotation($boardPosition);
             
-            $this->setXAxisPositon($matrixPositions[0]);
-            $this->setYAxisPositon($matrixPositions[1]);
+            $this->setXAxisPosition($matrixPositions[0]);
+            $this->setYAxisPosition($matrixPositions[1]);
         }
         else
         {
@@ -31,12 +31,12 @@ class Field
         }
     }
     
-    public function setXAxisPositon($xAxisPosition)
+    public function setXAxisPosition($xAxisPosition)
     {
         $this->xAxisPositon = $xAxisPosition;
     }
     
-    public function setYAxisPositon($yAxisPosition)
+    public function setYAxisPosition($yAxisPosition)
     {
         $this->yAxisPositon = $yAxisPosition;
     }
@@ -55,12 +55,6 @@ class Field
     {
         return ($this->getXAxisPosition() > 0 && $this->getXAxisPosition() <= 7)
                 && ($this->getYAxisPosition() > 0 && $this->getYAxisPosition() <= 7);
-    }
-    
-    public static function isValidStatic($xAxisPositon, $yAxisPositon)
-    {
-        return ($xAxisPositon > 0 && $xAxisPositon <= 7)
-                && ($yAxisPositon > 0 && $yAxisPositon);
     }
     
     public function getFieldIdentifier()

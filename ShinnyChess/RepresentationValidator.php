@@ -19,7 +19,6 @@ class RepresentationValidator
     public function isValidJson($gameRepresentation, $returnDecodedJson = false)
     {
         $arrayRepresentation = json_decode($gameRepresentation, true);
-//        die(print_r($arrayRepresentation));
         
         $valid = json_last_error() == JSON_ERROR_NONE;
         if($valid)

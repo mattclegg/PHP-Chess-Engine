@@ -12,6 +12,8 @@ class PieceFactory
         {
             case 'king': case 'k':
                 return new King($pieceColor, $field);
+            default:
+                throw new \Exception('Invalid piece name. Please see documentation.');
         }
     }
 }

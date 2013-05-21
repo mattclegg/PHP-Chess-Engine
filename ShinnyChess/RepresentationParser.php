@@ -53,6 +53,8 @@ class RepresentationParser
                 
                 $pieces[] = PieceFactory::createPiece($piece['piece'], $color, 
                         new Field($piece['position']));
+                
+                $pieces[0]->moveTo(new Field(array(0, 1)));
             }
             else
             {

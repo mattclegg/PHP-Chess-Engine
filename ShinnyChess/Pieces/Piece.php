@@ -13,7 +13,8 @@ class Piece
     protected $moveBehavior;
     
     protected $color;
-
+    
+    protected $currentField;
 
     public function __construct($color, Field $currentField = null)
     {
@@ -30,8 +31,15 @@ class Piece
     {
         if(!$this->isCaptured())
         {
-            $this->moveBehavior->move($this->getCurrentField(), $newField);
-            $this->currentField = $newField;
+            if($this->moveBehavior->canMove($this->getCurrentField(), $newField))
+            {
+                $this->currentField = $newField;
+                return true;
+            }
+            else
+            {
+                //ex
+            }
         }
         else
         {
@@ -42,5 +50,10 @@ class Piece
     public function getColor()
     {
         return $this->color;
+    }
+    
+    public function getCurrentField()
+    {
+        return $this->currentField;
     }
 }
