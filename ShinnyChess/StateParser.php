@@ -5,7 +5,7 @@ namespace ShinnyChess;
 use ShinnyChess\Pieces\Piece;
 use ShinnyChess\Pieces\PieceFactory;
 use ShinnyChess\Board\Field;
-use ShinnyChess\Exceptions\InvalidGameRepresentationException;
+use ShinnyChess\Exceptions\InvalidGameStateException;
 use ShinnyChess\Helpers\Color;
 
 class StateParser
@@ -36,7 +36,7 @@ class StateParser
         }
         else
         {
-            throw new InvalidGameRepresentationException;
+            throw new InvalidGameStateException;
         }
     }
     

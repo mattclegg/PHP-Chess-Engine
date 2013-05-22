@@ -1,7 +1,26 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-?>
+namespace ShinnyChess\Parsers;
+
+class JsonParser extends Parser
+{
+    public function __construct($state)
+    {
+        $this->initialState = $state;
+    }
+    
+    protected function generatePiecesFromArray()
+    {
+        
+    }
+
+    protected function convertToArray()
+    {
+        
+    }
+
+    protected function checkValidity()
+    {
+        
+    }
+}

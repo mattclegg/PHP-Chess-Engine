@@ -3,13 +3,14 @@
 namespace ShinnyChess;
 
 use ShinnyChess\Board\Board;
+use ShinnyChess\Parsers\ParserFactory;
 
 class Game
 {
     private $parser;
     private $board;
-    private $initialized = false;
     private static $instance;
+    private $initiated = false;
     
     //fen ili json(piece, color, field)
     private function __construct()
@@ -18,27 +19,35 @@ class Game
     
     public function getBoard()
     {
-        if($this->initialized)
-            return $this->board;
-        else
-            die('konju');
+        return $this->board;
     }
     
     public static function getInstance()
     {
         if(!isset(self::$instance))
         {
-            self::$instance = new Game;
+            self::$instance = new Game();
         }
         return self::$instance;
     }
     
-    public function addState($gameState)
+    public function setState($gameState = null)
     {
-        //if initialized, throw ex
-        $this->parser = new StateParser;
+        if($this->initiated)
+        {
+            throw new \Exception('Game already initiated. Please set game state.');
+        }
         
-        $pieces = $this->parser->getPieces($gameState);
+        if($gameState == null)
+        {
+            $gameState = $this->getDefaultState();
+        }
+        
+        $this->parser = new ParserFactory($gameState);
+        
+        $this->parser->parse();
+        
+        $pieces = $this->parser->getPieces();
         
         $this->board = new Board();
         
@@ -47,11 +56,16 @@ class Game
             $this->board->addPiece($piece, $position);
         }
         
-        $this->initialized = true;
+        $this->initiated = true;
     }
     
     public function reset()
     {
         
+    }
+    
+    private function getDefaultState()
+    {
+        return 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
     }
 }

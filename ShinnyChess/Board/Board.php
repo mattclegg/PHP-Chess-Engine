@@ -11,6 +11,8 @@ class Board
     
     private $capturedPieces = array();
     
+    private $enPassantField;
+    
     public function addPiece(Piece $piece, $position)
     {
         $this->filledFields[$position] = $piece;
@@ -80,5 +82,15 @@ class Board
     public function getAllPieces()
     {
         return $this->filledFields;
+    }
+    
+    public function setEnPassantField($position)
+    {
+        $this->enPassantField = new Field($position);
+    }
+    
+    public function getEnPassantField()
+    {
+        return $this->enPassantField;
     }
 }

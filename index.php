@@ -1,5 +1,18 @@
 <?php
 
+$test = array(
+    array(
+        
+    ),
+    'w',
+    array(
+        
+    ),
+    'a3',
+    '1',
+    '2'
+);
+
 //echo "Simple usage: <br /><br /><br />";
 
 include 'autoload.php';
@@ -13,8 +26,9 @@ use ShinnyChess\Game;
 
 $game = Game::getInstance();
 
-$game->addState('[{"piece":"p","color":"w","position":"e2"},{"piece":"r","color":"b","position":"c2"},
-    {"piece":"b","color":"b","position":"e6"},{"piece":"q","color":"w","position":"f6"}]');
+//$game->addState('[{"piece":"p","color":"w","position":"e2"},{"piece":"r","color":"b","position":"c2"},
+//    {"piece":"b","color":"b","position":"e6"},{"piece":"q","color":"w","position":"f6"}]');
+$game->setState('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
 //$game->addState('[{"piece":"king","color":"w","position":"b2"}]');
 
 //var_dump($game->getBoard());

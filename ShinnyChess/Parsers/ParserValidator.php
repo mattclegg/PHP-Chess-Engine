@@ -1,7 +1,8 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-?>
+namespace ShinnyChess\Parsers;
+
+abstract class ParserValidator
+{
+    abstract public static function isValidState($state);
+}
