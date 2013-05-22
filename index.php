@@ -13,8 +13,8 @@ use ShinnyChess\Game;
 
 $game = Game::getInstance();
 
-$game->addState('[{"piece":"k","color":"w","position":"e5"},{"piece":"r","color":"b","position":"c2"},
-    {"piece":"b","color":"b","position":"d4"},{"piece":"q","color":"w","position":"e4"}]');
+$game->addState('[{"piece":"p","color":"w","position":"e2"},{"piece":"r","color":"b","position":"c2"},
+    {"piece":"b","color":"b","position":"e6"},{"piece":"q","color":"w","position":"f6"}]');
 //$game->addState('[{"piece":"king","color":"w","position":"b2"}]');
 
 //var_dump($game->getBoard());
@@ -22,11 +22,11 @@ $game->addState('[{"piece":"k","color":"w","position":"e5"},{"piece":"r","color"
 //var_dump($game->getBoard());
 
 //$fieldsb = $game->getBoard()->getPieceAt('c2')->getMovableFields();
-$fieldsn = $game->getBoard()->getPieceAt('e5')->getMovableFields();
+$fieldsn = $game->getBoard()->getPieceAt('e2')->getMovableFields();
 //$fieldsBishop = $game->getBoard()->getPieceAt('d4')->getMovableFields();
 //$fieldsQ = $game->getBoard()->getPieceAt('e4')->getMovableFields();
 
-include 'html.php';
+include 'testHtml.php';
 ?>
 
 <script>

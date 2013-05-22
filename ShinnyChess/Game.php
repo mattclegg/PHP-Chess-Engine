@@ -2,8 +2,6 @@
 
 namespace ShinnyChess;
 
-use ShinnyChess\StateParser;
-use ShinnyChess\StateValidator;
 use ShinnyChess\Board\Board;
 
 class Game

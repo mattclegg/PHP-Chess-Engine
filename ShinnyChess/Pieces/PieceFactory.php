@@ -20,6 +20,8 @@ class PieceFactory
                 return new Queen($pieceColor, $field);
             case 'knight': case 'n':
                 return new Knight($pieceColor, $field);
+            case 'pawn': case 'p':
+                return new Pawn($pieceColor, $field);
             default:
                 throw new \Exception('Invalid piece name. Please see documentation.');
         }

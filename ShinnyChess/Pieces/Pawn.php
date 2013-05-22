@@ -2,12 +2,12 @@
 
 namespace ShinnyChess\Pieces;
 
-use ShinnyChess\Pieces\Piece;
 use ShinnyChess\Board\Field;
 use ShinnyChess\Exceptions\FieldException;
 use ShinnyChess\Game;
+use ShinnyChess\Helpers\Color;
 
-class King extends Piece
+class Pawn extends Piece
 {
 
     public function move(Field $newField)
@@ -17,52 +17,95 @@ class King extends Piece
 
     public function getMovableFields()
     {
+        //add en passant
+        
         $board = Game::getInstance()->getBoard();
         $fields = array();
         $currentX = $this->getCurrentField()->getXAxisPosition();
         $currentY = $this->getCurrentField()->getYAxisPosition();
-
-        for ($i = -1; $i <= 1; $i++)
+        
+        //frontal movement
+        try
         {
-            try
+            if($this->canMoveTwoFields())
             {
-                //fields beneath
-                $possibleField = new Field(array($currentX + $i, $currentY - 1));
-                
-                $obstacleCheck = $board->getPieceAt($possibleField);
-                
-                if(!isset($obstacleCheck) || $obstacleCheck->getColor() != $this->getColor())
+                for($i = 1; $i < 3; $i++)
                 {
-                    $fields[] = $possibleField;
-                }
+                    if($this->getColor() == Color::COLOR_BLACK)
+                    {
+                        $step = -$i;
+                    }
+                    else
+                    {
+                        $step = $i;
+                    }
+                    
+                    $possibleField = new Field(array($currentX, $currentY + $step));
                 
-                //fields above
-                $possibleField = new Field(array($currentX + $i, $currentY + 1));
-                
-                $obstacleCheck = $board->getPieceAt($possibleField);
-                
-                if(!isset($obstacleCheck) || $obstacleCheck->getColor() != $this->getColor())
-                {
-                    $fields[] = $possibleField;
-                }
-                
-                //fields in same y coordinate
-                if($i != 0)
-                {
-                    $possibleField = new Field(array($currentX + $i, $currentY));
-
                     $obstacleCheck = $board->getPieceAt($possibleField);
-
-                    if(!isset($obstacleCheck) || $obstacleCheck->getColor() != $this->getColor())
+                    
+                    if(isset($obstacleCheck))
+                    {
+                        break;
+                    }
+                    else
                     {
                         $fields[] = $possibleField;
                     }
                 }
             }
-            catch (FieldException $ex){}
+            else
+            {
+                $i = 1;
+                if($this->getColor() == Color::COLOR_BLACK)
+                {
+                    $i = -$i;
+                }
+                $possibleField = new Field(array($currentX, $currentY + $i));
+                
+                $obstacleCheck = $board->getPieceAt($possibleField);
+
+                if(!isset($obstacleCheck))
+                {
+                    $fields[] = $possibleField;
+                }
+            }
         }
+        catch (FieldException $ex){}
+        
+        //diagonal capturing
+        try
+        {
+            if($this->getColor() == Color::COLOR_BLACK)
+            {
+                $step = -1;
+            }
+            else
+            {
+                $step = 1;
+            }
+            
+            foreach (array(1, -1) as $xMovement)
+            {
+                $possibleField = new Field(array($currentX + $xMovement, $currentY + $step));
+
+                $obstacleCheck = $board->getPieceAt($possibleField);
+
+                if(isset($obstacleCheck) && $obstacleCheck->getColor() != $this->getColor())
+                {
+                    $fields[] = $possibleField;
+                }
+            }
+        }
+        catch (FieldException $ex){}
 
         return $fields;
+    }
+    
+    private function canMoveTwoFields()
+    {
+        return (($this->getColor() == Color::COLOR_WHITE && $this->getCurrentField()->getYAxisPosition() == 1)
+                || ($this->getColor() == Color::COLOR_BLACK && $this->getCurrentField()->getYAxisPosition() == 6));
     }
 
 }

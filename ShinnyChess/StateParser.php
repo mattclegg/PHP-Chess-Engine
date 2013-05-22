@@ -2,7 +2,6 @@
 
 namespace ShinnyChess;
 
-use ShinnyChess\StateValidator;
 use ShinnyChess\Pieces\Piece;
 use ShinnyChess\Pieces\PieceFactory;
 use ShinnyChess\Board\Field;
@@ -12,6 +11,7 @@ use ShinnyChess\Helpers\Color;
 class StateParser
 {
     private $validator;
+    private $piecesArray;
     
     public function __construct()
     {
@@ -20,7 +20,8 @@ class StateParser
     
     public function getPieces($gameRepresentation)
     {
-        return $this->toArray($gameRepresentation);
+        return $this->piecesArray;
+//        return $this->toArray($gameRepresentation);
     }
     
     private function toArray($gameRepresentation)
