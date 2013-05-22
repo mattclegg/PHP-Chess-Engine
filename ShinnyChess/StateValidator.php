@@ -4,7 +4,7 @@ namespace ShinnyChess;
 
 use ShinnyChess\Helpers\Color;
 
-class RepresentationValidator
+class StateValidator
 {
     private $validDecodedJson;
     

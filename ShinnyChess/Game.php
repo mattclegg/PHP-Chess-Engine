@@ -2,8 +2,8 @@
 
 namespace ShinnyChess;
 
-use ShinnyChess\RepresentationParser;
-use ShinnyChess\RepresentationValidator;
+use ShinnyChess\StateParser;
+use ShinnyChess\StateValidator;
 use ShinnyChess\Board\Board;
 
 class Game
@@ -35,10 +35,10 @@ class Game
         return self::$instance;
     }
     
-    public function addRepresentation($gameRepresentation)
+    public function addState($gameRepresentation)
     {
         //if initialized, throw ex
-        $this->parser = new RepresentationParser;
+        $this->parser = new StateParser;
         
         $pieces = $this->parser->getPieces($gameRepresentation);
         

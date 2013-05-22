@@ -7,9 +7,9 @@ use ShinnyChess\Board\Field;
 
 class QueenMove extends Move
 {
-    public function canMove(Field $currentField, Field $newField)
+    public function canMove(Field $newField)
     {
-        return $this->isDiagonalMove($currentField, $newField) || $this->isVerticalMove($currentField, $newField)
-                || $this->isHorizontalMove($currentField, $newField);
+        return $this->isDiagonalMove($this->currentField, $newField) || $this->isVerticalMove($this->currentField, $newField)
+                || $this->isHorizontalMove($this->currentField, $newField);
     }
 }

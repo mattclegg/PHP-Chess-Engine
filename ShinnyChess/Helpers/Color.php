@@ -2,7 +2,7 @@
 
 namespace ShinnyChess\Helpers;
 
-use ShinnyChess\RepresentationValidator;
+use ShinnyChess\StateValidator;
 
 class Color
 {
@@ -18,7 +18,7 @@ class Color
     
     public static function getColorFromString($colorString)
     {
-        if(RepresentationValidator::isValidColor($colorString))
+        if(StateValidator::isValidColor($colorString))
         {
             if($colorString == self::STRING_BLACK || $colorString == self::STRING_BLACK_SHORT)
             {

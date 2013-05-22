@@ -2,7 +2,7 @@
 
 namespace ShinnyChess\Board;
 
-use ShinnyChess\RepresentationValidator;
+use ShinnyChess\StateValidator;
 use ShinnyChess\Exceptions\FieldException;
 
 class Field
@@ -13,12 +13,17 @@ class Field
     
     public function __construct($boardPosition)
     {
-        if(is_array($boardPosition) && RepresentationValidator::isValidFieldArray($boardPosition))
+        if($boardPosition instanceof self)
+        {
+            $this->xAxisPositon = $boardPosition->getXAxisPosition();
+            $this->yAxisPositon = $boardPosition->getYAxisPosition();
+        }
+        else if(is_array($boardPosition) && StateValidator::isValidFieldArray($boardPosition))
         {
             $this->setXAxisPosition($boardPosition[0]);
             $this->setYAxisPosition($boardPosition[1]);
         }
-        else if(!is_array($boardPosition) && RepresentationValidator::isValidAlgebraicNotation($boardPosition))
+        else if(!is_array($boardPosition) && StateValidator::isValidAlgebraicNotation($boardPosition))
         {
             $matrixPositions = $this->getMatrixPositionFromAlgebriacNotation($boardPosition);
             
@@ -100,5 +105,15 @@ class Field
         }
         
         return $position;
+    }
+    
+    public function toArray()
+    {
+        
+    }
+    
+    public function toAlgebriacNotation()
+    {
+        
     }
 }

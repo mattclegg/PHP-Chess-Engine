@@ -20,11 +20,21 @@ class Board
     {
         $field = new Field($position);
         
-        return $this->filledFields[$field->getFieldIdentifier()];
+        if(isset($this->filledFields[$field->getFieldIdentifier()]))
+        {
+            return $this->filledFields[$field->getFieldIdentifier()];
+        }
+        else
+        {
+            return null;
+        }
     }
     
-    public function movePiece(Field $currentField, Field $newField)
+    public function movePiece($currentPosition, $newPosition)
     {
+        $currentField = new Field($currentPosition);
+        $newField = new Field($newPosition);
+        
         $currentFieldIdentifier = $currentField->getFieldIdentifier();
         if(isset($this->filledFields[$currentFieldIdentifier]))
         {
@@ -35,5 +45,20 @@ class Board
         {
             //ex
         }
+    }
+    
+    private function beforeMove()
+    {
+        
+    }
+    
+    private function doMove()
+    {
+        
+    }
+    
+    private function afterMove()
+    {
+        
     }
 }

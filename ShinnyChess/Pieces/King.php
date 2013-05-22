@@ -11,6 +11,11 @@ class King extends Piece
     public function __construct($color, Field $currentField = null)
     {
         parent::__construct($color, $currentField);
-        $this->moveBehavior = new KingMove();
+        $this->moveBehavior = new KingMove($color, $currentField);
+    }
+    
+    public function isAttacked()
+    {
+        
     }
 }

@@ -6,30 +6,40 @@ use ShinnyChess\Board\Field;
 
 abstract class Move
 {
-    public abstract function canMove(Field $currentField, Field $newField);
+    protected $color;
     
-    public function isDiagonalMove(Field $currentField, Field $newField)
+    protected $currentField;
+    
+    public function __construct($color, Field $currentField)
     {
-        return ($currentField->getXAxisPosition() - $newField->getXAxisPosition())
-                == ($currentField->getYAxisPosition() - $newField->getYAxisPosition());
+        $this->color = $color;
+        $this->currentField = $currentField;
     }
     
-    public function isVerticalMove(Field $currentField, Field $newField)
+    public abstract function canMove(Field $newField);
+    
+    public function isDiagonalMove(Field $newField)
     {
-        return ($currentField->getXAxisPosition() == $newField->getXAxisPosition()) && 
-                ($currentField->getYAxisPosition() != $newField->getYAxisPosition());
+        return ($this->currentField->getXAxisPosition() - $newField->getXAxisPosition())
+                == ($this->currentField->getYAxisPosition() - $newField->getYAxisPosition());
     }
     
-    public function isHorizontalMove(Field $currentField, Field $newField)
+    public function isVerticalMove(Field $newField)
     {
-        return ($currentField->getXAxisPosition() != $newField->getXAxisPosition()) && 
-                ($currentField->getYAxisPosition() == $newField->getYAxisPosition());
+        return ($this->currentField->getXAxisPosition() == $newField->getXAxisPosition()) && 
+                ($this->currentField->getYAxisPosition() != $newField->getYAxisPosition());
     }
     
-    public function isLMove(Field $currentField, Field $newField)
+    public function isHorizontalMove(Field $newField)
     {
-        $verticalDiff = abs($currentField->getYAxisPosition() - $newField->getYAxisPosition());
-        $horizontalDiff = abs($currentField->getXAxisPosition() - $newField->getXAxisPosition());
+        return ($this->currentField->getXAxisPosition() != $newField->getXAxisPosition()) && 
+                ($this->currentField->getYAxisPosition() == $newField->getYAxisPosition());
+    }
+    
+    public function isLMove(Field $newField)
+    {
+        $verticalDiff = abs($this->currentField->getYAxisPosition() - $newField->getYAxisPosition());
+        $horizontalDiff = abs($this->currentField->getXAxisPosition() - $newField->getXAxisPosition());
         
         return ($verticalDiff == 1 && $horizontalDiff == 2) || ($horizontalDiff == 1 && $verticalDiff == 2);
     }

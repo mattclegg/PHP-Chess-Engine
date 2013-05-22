@@ -13,9 +13,11 @@ use ShinnyChess\Game;
 
 $game = Game::getInstance();
 
-//$game->addRepresentation('[{"piece":"king","color":"w","position":"a7"},{"piece":"king","color":"b","position":[5,4]}]');
-$game->addRepresentation('[{"piece":"king","color":"w","position":"a7"}]');
+$game->addState('[{"piece":"king","color":"w","position":"b2"},{"piece":"king","color":"b","position":"b3"}]');
+//$game->addState('[{"piece":"king","color":"w","position":"b2"}]');
 
-var_dump($game->getBoard());
-//$game->getBoard()->getPieceAtPosition('a7')->moveTo("a6");
 //var_dump($game->getBoard());
+//$game->getBoard()->movePiece();
+//var_dump($game->getBoard());
+
+$game->getBoard()->getPieceAtPosition('b2')->getMovableTo('b2');

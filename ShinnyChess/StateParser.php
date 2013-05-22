@@ -2,20 +2,20 @@
 
 namespace ShinnyChess;
 
-use ShinnyChess\RepresentationValidator;
+use ShinnyChess\StateValidator;
 use ShinnyChess\Pieces\Piece;
 use ShinnyChess\Pieces\PieceFactory;
 use ShinnyChess\Board\Field;
 use ShinnyChess\Exceptions\InvalidGameRepresentationException;
 use ShinnyChess\Helpers\Color;
 
-class RepresentationParser
+class StateParser
 {
     private $validator;
     
     public function __construct()
     {
-        $this->validator = new RepresentationValidator;
+        $this->validator = new StateValidator;
     }
     
     public function getPieces($gameRepresentation)
