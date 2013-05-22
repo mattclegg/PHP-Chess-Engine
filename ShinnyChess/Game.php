@@ -35,12 +35,12 @@ class Game
         return self::$instance;
     }
     
-    public function addState($gameRepresentation)
+    public function addState($gameState)
     {
         //if initialized, throw ex
         $this->parser = new StateParser;
         
-        $pieces = $this->parser->getPieces($gameRepresentation);
+        $pieces = $this->parser->getPieces($gameState);
         
         $this->board = new Board();
         
@@ -50,5 +50,10 @@ class Game
         }
         
         $this->initialized = true;
+    }
+    
+    public function reset()
+    {
+        
     }
 }

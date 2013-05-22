@@ -51,7 +51,7 @@ class StateParser
                 
                 $field = new Field($piece['position']);
                 
-                $pieces[$field->getFieldIdentifier()] = PieceFactory::createPiece($piece['piece'], $color);
+                $pieces[$field->getFieldIdentifier()] = PieceFactory::createPiece($piece['piece'], $color, $field);
             }
             else
             {

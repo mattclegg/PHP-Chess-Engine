@@ -16,7 +16,7 @@ class Board
         $this->filledFields[$position] = $piece;
     }
     
-    public function getPieceAtPosition($position)
+    public function getPieceAt($position)
     {
         $field = new Field($position);
         
@@ -60,5 +60,25 @@ class Board
     private function afterMove()
     {
         
+    }
+    
+    public function updatePieceField(Field $oldField, Field $newField)
+    {
+        $oldFieldIdentifier = $oldField->getFieldIdentifier();
+        if(isset($this->filledFields[$oldFieldIdentifier]))
+        {
+            $this->filledFields[$newField->getFieldIdentifier()] = $this->filledFields[$oldFieldIdentifier];
+            $this->filledFields[$newField->getFieldIdentifier()]->updateField($newField);
+            unset($this->filledFields[$oldFieldIdentifier]);
+        }
+        else
+        {
+            //ex
+        }
+    }
+    
+    public function getAllPieces()
+    {
+        return $this->filledFields;
     }
 }

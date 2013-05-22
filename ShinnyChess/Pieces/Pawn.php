@@ -10,11 +10,6 @@ use ShinnyChess\Game;
 class King extends Piece
 {
 
-    public function isAttacked()
-    {
-        
-    }
-
     public function move(Field $newField)
     {
         

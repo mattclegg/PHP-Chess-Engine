@@ -107,13 +107,53 @@ class Field
         return $position;
     }
     
+    private function matrixPositionToLetter($position)
+    {
+        $letter = false;
+        
+        switch ($position)
+        {
+            case 0:
+                $position = 'a';
+                break;
+            case 1:
+                $position = 'b';
+                break;
+            case 2:
+                $position = 'c';
+                break;
+            case 3:
+                $position = 'd';
+                break;
+            case 4:
+                $position = 'e';
+                break;
+            case 5:
+                $position = 'f';
+                break;
+            case 6:
+                $position = 'g';
+                break;
+            case 7:
+                $position = 'h';
+                break;
+        }
+        
+        return $position;
+    }
+    
     public function toArray()
     {
-        
+        return array($this->getXAxisPosition(), $this->getYAxisPosition());
     }
     
     public function toAlgebriacNotation()
     {
+        $notation = '';
         
+        $notation .= $this->matrixPositionToLetter($this->getXAxisPosition());
+        $notation .= (string) $this->getYAxisPosition() + 1;
+        
+        return $notation;
     }
 }

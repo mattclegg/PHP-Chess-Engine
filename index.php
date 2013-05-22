@@ -1,6 +1,6 @@
 <?php
 
-echo "Simple usage: <br /><br /><br />";
+//echo "Simple usage: <br /><br /><br />";
 
 include 'autoload.php';
 
@@ -13,11 +13,54 @@ use ShinnyChess\Game;
 
 $game = Game::getInstance();
 
-$game->addState('[{"piece":"king","color":"w","position":"b2"},{"piece":"king","color":"b","position":"b3"}]');
+$game->addState('[{"piece":"k","color":"w","position":"e5"},{"piece":"r","color":"b","position":"c2"},
+    {"piece":"b","color":"b","position":"d4"},{"piece":"q","color":"w","position":"e4"}]');
 //$game->addState('[{"piece":"king","color":"w","position":"b2"}]');
 
 //var_dump($game->getBoard());
 //$game->getBoard()->movePiece();
 //var_dump($game->getBoard());
 
-$game->getBoard()->getPieceAtPosition('b2')->getMovableTo('b2');
+//$fieldsb = $game->getBoard()->getPieceAt('c2')->getMovableFields();
+$fieldsn = $game->getBoard()->getPieceAt('e5')->getMovableFields();
+//$fieldsBishop = $game->getBoard()->getPieceAt('d4')->getMovableFields();
+//$fieldsQ = $game->getBoard()->getPieceAt('e4')->getMovableFields();
+
+include 'html.php';
+?>
+
+<script>
+    var pieces = new Array();
+    <? foreach($game->getBoard()->getAllPieces() as $piece) { 
+        echo 'pieces["' . $piece->getCurrentField()->getFieldIdentifier() . '"] = "' . $piece->getColor() . '-' 
+                . join('', array_slice(explode('\\', get_class($piece)), -1)) . '";' . "\n"; 
+    } ?>
+        
+    for (var i in pieces)
+    {
+        var color = '#999393';
+        
+        if(pieces[i].charAt(0) == '1') 
+        {
+            color = '#d4d4d4';
+        }
+        $('#' + i).css({'background-color': color});
+        $('#' + i).text(pieces[i]);
+    }
+    
+    var fields = new Array();
+    <? foreach($fieldsn as $field) { 
+        echo 'fields.push("' . $field->getFieldIdentifier() . '");' . "\n"; 
+    } ?>
+    for (var i in fields)
+    {
+        var color = '#c48080';
+        if($('#' + fields[i]).text().trim() != ''){
+            console.log($('#' + fields[i]).text());
+            color = '#bf0000';
+        }
+        $('#' + fields[i]).css({'background-color': color});
+//        $('#' + i).text(fields[i]);
+    }
+    
+</script>
