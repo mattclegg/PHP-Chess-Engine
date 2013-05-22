@@ -34,4 +34,13 @@ class Color
             //ex
         }
     }
+    
+    public static function validateColorString($string)
+    {
+        if(!in_array($string, array(self::STRING_BLACK, self::STRING_BLACK_SHORT, self::STRING_WHITE, self::STRING_WHITE_SHORT)))
+        {
+            throw new \Exception;
+        }
+    }
+    
 }

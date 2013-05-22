@@ -1,21 +1,18 @@
 <?php
 
-$test = array(
-    array(
-        
-    ),
-    'w',
-    array(
-        
-    ),
-    'a3',
-    '1',
-    '2'
-);
-
 //echo "Simple usage: <br /><br /><br />";
 
 include 'autoload.php';
+
+use ShinnyChess\Helpers\JsonState;
+
+$json = new JsonState;
+$json->addPiece('p', 'w', 'a3');
+$json->addPiece('king', 'black', array(1,6));
+//$json->setBlackCastling(JsonState::CASTLING_BOTH);
+//$json->setWhiteCastling(JsonState::CASTLING_KINGS);
+$json->setEnPassantField('a3');
+die($json->getJson());
 
 use ShinnyChess\Game;
 

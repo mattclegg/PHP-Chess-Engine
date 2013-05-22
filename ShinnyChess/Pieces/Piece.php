@@ -3,7 +3,7 @@
 namespace ShinnyChess\Pieces;
 
 use ShinnyChess\Board\Field;
-use ShinnyChess\Game;
+use ShinnyChess\Exceptions\InvalidPieceNameException;
 
 abstract class Piece
 {
@@ -78,6 +78,16 @@ abstract class Piece
     public function updateField(Field $newField)
     {
         $this->currentField = $newField;
+    }
+    
+    public static function validateName($name)
+    {
+        $name = strtolower($name);
+        
+        if(!in_array($name, array('p', 'pawn', 'r', 'rook', 'n', 'knight', 'b', 'bishop', 'q', 'queen', 'k', 'king')))
+        {
+            throw new InvalidPieceNameException;
+        }
     }
     
 }

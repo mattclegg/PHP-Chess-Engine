@@ -3,6 +3,7 @@
 namespace ShinnyChess\Helpers;
 
 use ShinnyChess\Board\Field;
+use ShinnyChess\Pieces\Piece;
 
 class JsonState
 {
@@ -18,15 +19,22 @@ class JsonState
     
     private $blackCastling;
     
-    private $enPassantField = null;
+    private $enPassantField = '-';
     
     private $halfMoves = 0;
     
     private $fullMoves = 1;
     
-    public function addPiece()
+    public function addPiece($pieceName, $pieceColor, $piecePosition)
     {
-        
+        Piece::validateName($pieceName);
+        Color::validateColorString($pieceColor);
+        $field = new Field($piecePosition);
+        $this->pieces[] = array(
+            'piece' => $pieceName,
+            'color' => $pieceColor,
+            'position' => $field->toAlgebriacNotation()
+        );
     }
     
     public function setNextPlayer($player)
@@ -45,7 +53,7 @@ class JsonState
         }
     }
     
-    public function setBlackCastling()
+    public function setBlackCastling($castling)
     {
         if(in_array($castling, array(self::CASTLING_BOTH, self::CASTLING_KINGS, self::CASTLING_QUEENS)))
         {
@@ -106,6 +114,7 @@ class JsonState
                 $castlingArray[] = 'q';
             }
         }
+        return implode('', $castlingArray);
     }
 
     public function getJson()
