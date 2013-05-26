@@ -1,6 +1,6 @@
 <?php
 
-namespace ShinnyChess\Exceptions;
+namespace ChessEngine\Exceptions;
 
 use \Exception;
 

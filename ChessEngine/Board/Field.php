@@ -1,9 +1,9 @@
 <?php
 
-namespace ShinnyChess\Board;
+namespace ChessEngine\Board;
 
-use ShinnyChess\StateValidator;
-use ShinnyChess\Exceptions\FieldException;
+use ChessEngine\StateValidator;
+use ChessEngine\Exceptions\FieldException;
 
 class Field
 {

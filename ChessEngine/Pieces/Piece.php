@@ -1,9 +1,9 @@
 <?php
 
-namespace ShinnyChess\Pieces;
+namespace ChessEngine\Pieces;
 
-use ShinnyChess\Board\Field;
-use ShinnyChess\Exceptions\InvalidPieceNameException;
+use ChessEngine\Board\Field;
+use ChessEngine\Exceptions\InvalidPieceNameException;
 
 abstract class Piece
 {
@@ -13,7 +13,7 @@ abstract class Piece
     
     protected $currentField;
 
-    public function __construct($color, Field $currentField = null)
+    public function __construct($color, Field $currentField)
     {
         $this->color = $color;
         $this->currentField = $currentField;

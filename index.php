@@ -4,7 +4,7 @@
 
 include 'autoload.php';
 
-use ShinnyChess\Helpers\JsonState;
+use ChessEngine\Helpers\JsonState;
 
 $json = new JsonState;
 $json->addPiece('p', 'w', 'a3');
@@ -14,7 +14,7 @@ $json->addPiece('king', 'black', array(1,6));
 $json->setEnPassantField('a3');
 die($json->getJson());
 
-use ShinnyChess\Game;
+use ChessEngine\Game;
 
 //$x = new Game('[{"piece":"king","color":"w","position":"a7"},{"piece":"king","color":"b","position":[5,4]}]');
 //$x = new Game('[{"piece":"king","color":"w","position":"a1"}]');

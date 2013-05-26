@@ -1,11 +1,11 @@
 <?php
 
-namespace ShinnyChess\Pieces;
+namespace ChessEngine\Pieces;
 
-use ShinnyChess\Board\Field;
-use ShinnyChess\Exceptions\FieldException;
-use ShinnyChess\Game;
-use ShinnyChess\Helpers\Color;
+use ChessEngine\Board\Field;
+use ChessEngine\Exceptions\FieldException;
+use ChessEngine\Game;
+use ChessEngine\Helpers\Color;
 
 class Pawn extends Piece
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace ShinnyChess\Board;
+namespace ChessEngine\Board;
 
-use ShinnyChess\Board\Field;
-use ShinnyChess\Pieces\Piece;
+use ChessEngine\Board\Field;
+use ChessEngine\Pieces\Piece;
 
 class Board 
 {

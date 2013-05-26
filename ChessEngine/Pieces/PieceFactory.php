@@ -1,12 +1,12 @@
 <?php
 
-namespace ShinnyChess\Pieces;
+namespace ChessEngine\Pieces;
 
-use ShinnyChess\Board\Field;
+use ChessEngine\Board\Field;
 
 class PieceFactory
 {
-    public static function createPiece($pieceName, $pieceColor, Field $field = null)
+    public static function createPiece($pieceName, $pieceColor, Field $field)
     {
         switch ($pieceName)
         {

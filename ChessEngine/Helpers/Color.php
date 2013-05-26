@@ -1,8 +1,8 @@
 <?php
 
-namespace ShinnyChess\Helpers;
+namespace ChessEngine\Helpers;
 
-use ShinnyChess\StateValidator;
+use ChessEngine\StateValidator;
 
 class Color
 {

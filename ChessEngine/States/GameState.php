@@ -1,11 +1,11 @@
 <?php
 
-namespace ShinnyChess\Helpers;
+namespace ChessEngine\States;
 
-use ShinnyChess\Board\Field;
-use ShinnyChess\Pieces\Piece;
+use ChessEngine\Pieces\PieceFactory;
+use ChessEngine\Pieces\Piece;
 
-class JsonState
+class GameState
 {
     const CASTLING_KINGS = 1;
     const CASTLING_QUEENS = 2;
@@ -25,16 +25,9 @@ class JsonState
     
     private $fullMoves = 1;
     
-    public function addPiece($pieceName, $pieceColor, $piecePosition)
+    public function addPiece(Piece $piece)
     {
-        Piece::validateName($pieceName);
-        Color::validateColorString($pieceColor);
-        $field = new Field($piecePosition);
-        $this->pieces[] = array(
-            'piece' => $pieceName,
-            'color' => $pieceColor,
-            'position' => $field->toAlgebriacNotation()
-        );
+        $this->pieces[] = $piece;
     }
     
     public function setNextPlayer($player)
@@ -116,16 +109,9 @@ class JsonState
         }
         return implode('', $castlingArray);
     }
-
-    public function getJson()
+    
+    public function getPieces()
     {
-        return json_encode(array(
-            $this->pieces,
-            $this->nextPlayer,
-            $this->getCastlingString(),
-            $this->enPassantField,
-            $this->halfMoves,
-            $this->fullMoves
-        ));
+        return $this->pieces;
     }
 }

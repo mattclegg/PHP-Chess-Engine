@@ -1,9 +1,9 @@
 <?php
 
-namespace ShinnyChess\Pieces;
-use ShinnyChess\Board\Field;
-use ShinnyChess\Exceptions\FieldException;
-use ShinnyChess\Game;
+namespace ChessEngine\Pieces;
+use ChessEngine\Board\Field;
+use ChessEngine\Exceptions\FieldException;
+use ChessEngine\Game;
 
 class Knight extends Piece
 {

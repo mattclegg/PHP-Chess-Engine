@@ -1,11 +1,11 @@
 <?php
 
-namespace ShinnyChess\Pieces;
+namespace ChessEngine\Pieces;
 
-use ShinnyChess\Pieces\Piece;
-use ShinnyChess\Board\Field;
-use ShinnyChess\Exceptions\FieldException;
-use ShinnyChess\Game;
+use ChessEngine\Pieces\Piece;
+use ChessEngine\Board\Field;
+use ChessEngine\Exceptions\FieldException;
+use ChessEngine\Game;
 
 class King extends Piece
 {
