@@ -13,7 +13,7 @@ class FieldException extends \Exception
     protected static $messageXAxisOutbound = 'X position has to be between "0" and "7" or from "a" to "h".';
     protected static $messageYAxisOutbound = 'Y position has to be between "0" and "7" or from "a" to "h".';
     protected static $messageInvalidParams = 'Invalid param passed to Field constructor. Parameter
-        has to be algebriac notation (eg. "a1") or an array with 2 integer values from 0 to 7.';
+        has to be algebraic notation (eg. "a1") or an array with 2 integer values from 0 to 7.';
     
     public function __construct($type)
     {

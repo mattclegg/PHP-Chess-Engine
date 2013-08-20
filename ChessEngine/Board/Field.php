@@ -25,7 +25,7 @@ class Field
         }
         else if(!is_array($boardPosition) && StateValidator::isValidAlgebraicNotation($boardPosition))
         {
-            $matrixPositions = $this->getMatrixPositionFromAlgebriacNotation($boardPosition);
+            $matrixPositions = $this->getMatrixPositionFromAlgebraicNotation($boardPosition);
             
             $this->setXAxisPosition($matrixPositions[0]);
             $this->setYAxisPosition($matrixPositions[1]);
@@ -67,7 +67,7 @@ class Field
         return $this->getXAxisPosition() . 'x' . $this->getYAxisPosition();
     }
     
-    private function getMatrixPositionFromAlgebriacNotation($string)
+    private function getMatrixPositionFromAlgebraicNotation($string)
     {
         return array($this->letterToMatrixPosition($string[0]), (int) $string[1] - 1);
     }
@@ -147,7 +147,7 @@ class Field
         return array($this->getXAxisPosition(), $this->getYAxisPosition());
     }
     
-    public function toAlgebriacNotation()
+    public function toAlgebraicNotation()
     {
         $notation = '';
         

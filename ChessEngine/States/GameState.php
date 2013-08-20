@@ -57,7 +57,7 @@ class GameState
     public function setEnPassantField($position)
     {
         $field = new Field($position);
-        $this->enPassantField = $field->toAlgebriacNotation();
+        $this->enPassantField = $field->toAlgebraicNotation();
     }
     
     public function setHalfMoves($halfMoves)
