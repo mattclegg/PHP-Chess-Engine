@@ -1,6 +1,7 @@
 <?php
 
 namespace ChessEngine\Pieces;
+
 use ChessEngine\Board\Field;
 use ChessEngine\Exceptions\FieldException;
 use ChessEngine\Game;

@@ -2,7 +2,6 @@
 
 namespace ChessEngine\Board;
 
-use ChessEngine\Board\Field;
 use ChessEngine\Pieces\Piece;
 
 class Board 
