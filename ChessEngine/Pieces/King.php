@@ -26,44 +26,47 @@ class King extends Piece
         $currentX = $this->getCurrentField()->getXAxisPosition();
         $currentY = $this->getCurrentField()->getYAxisPosition();
 
+
+
         for ($i = -1; $i <= 1; $i++)
         {
-            try
+
+            var_dump($currentY - 1);
+
+            //fields beneath
+            $possibleField = new Field(array($currentX + $i, $currentY - 1));
+
+
+            $obstacleCheck = $board->getPieceAt($possibleField);
+
+            if($obstacleCheck && $obstacleCheck->getColor() != $this->getColor())
             {
-                //fields beneath
-                $possibleField = new Field(array($currentX + $i, $currentY - 1));
-                
+                $fields[] = $possibleField;
+            }
+
+            //fields above
+            $possibleField = new Field(array($currentX + $i, $currentY + 1));
+
+            $obstacleCheck = $board->getPieceAt($possibleField);
+
+            if($obstacleCheck && $obstacleCheck->getColor() != $this->getColor())
+            {
+                $fields[] = $possibleField;
+            }
+
+            //fields in same y coordinate
+            if($i != 0)
+            {
+                $possibleField = new Field(array($currentX + $i, $currentY));
+
                 $obstacleCheck = $board->getPieceAt($possibleField);
-                
-                if(!isset($obstacleCheck) || $obstacleCheck->getColor() != $this->getColor())
+
+                if($obstacleCheck && $obstacleCheck->getColor() != $this->getColor())
                 {
                     $fields[] = $possibleField;
-                }
-                
-                //fields above
-                $possibleField = new Field(array($currentX + $i, $currentY + 1));
-                
-                $obstacleCheck = $board->getPieceAt($possibleField);
-                
-                if(!isset($obstacleCheck) || $obstacleCheck->getColor() != $this->getColor())
-                {
-                    $fields[] = $possibleField;
-                }
-                
-                //fields in same y coordinate
-                if($i != 0)
-                {
-                    $possibleField = new Field(array($currentX + $i, $currentY));
-
-                    $obstacleCheck = $board->getPieceAt($possibleField);
-
-                    if(!isset($obstacleCheck) || $obstacleCheck->getColor() != $this->getColor())
-                    {
-                        $fields[] = $possibleField;
-                    }
                 }
             }
-            catch (FieldException $ex){}
+
         }
 
         return $fields;

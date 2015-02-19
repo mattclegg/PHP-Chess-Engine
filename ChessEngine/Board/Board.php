@@ -11,24 +11,32 @@ class Board
     private $capturedPieces = array();
     
     private $enPassantField;
+
+    public function __set($position, Piece $piece)
+    {
+        $this->filledFields[$position] = $piece;
+    }
+
+    /**
+     * @param $position
+     * @return Peice | bool
+     */
+    public function __get($position)
+    {
+        if (array_key_exists($position, $this->filledFields)) {
+            return $this->filledFields[$position];
+        }
+        return false;
+    }
     
     public function addPiece(Piece $piece, $position)
     {
-        $this->filledFields[$position] = $piece;
+        $this->$position = $piece;
     }
     
     public function getPieceAt($position)
     {
-        $field = new Field($position);
-        
-        if(isset($this->filledFields[$field->getFieldIdentifier()]))
-        {
-            return $this->filledFields[$field->getFieldIdentifier()];
-        }
-        else
-        {
-            return null;
-        }
+        return $this->$position;
     }
     
     public function movePiece($currentPosition, $newPosition)

@@ -2,6 +2,7 @@
 
 namespace ChessEngine\States;
 
+use ChessEngine\Board\Field;
 use ChessEngine\Pieces\PieceFactory;
 use ChessEngine\Pieces\Piece;
 

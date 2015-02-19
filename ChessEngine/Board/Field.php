@@ -26,7 +26,7 @@ class Field
         else if(!is_array($boardPosition) && StateValidator::isValidAlgebraicNotation($boardPosition))
         {
             $matrixPositions = $this->getMatrixPositionFromAlgebraicNotation($boardPosition);
-            
+
             $this->setXAxisPosition($matrixPositions[0]);
             $this->setYAxisPosition($matrixPositions[1]);
         }
@@ -141,7 +141,12 @@ class Field
         
         return $position;
     }
-    
+
+    function __toString() {
+        return $this->toAlgebraicNotation();
+    }
+
+
     public function toArray()
     {
         return array($this->getXAxisPosition(), $this->getYAxisPosition());
