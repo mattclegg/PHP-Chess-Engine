@@ -18,86 +18,51 @@ class Pawn extends Piece
     public function getMovableFields()
     {
         //add en passant
-        
-        $board = Game::getInstance()->getBoard();
+
         $fields = array();
         $currentX = $this->getCurrentField()->getXAxisPosition();
         $currentY = $this->getCurrentField()->getYAxisPosition();
         
         //frontal movement
-        try
+        if($this->canMoveTwoFields())
         {
-            if($this->canMoveTwoFields())
+            for($i = 1; $i < 3; $i++)
             {
-                for($i = 1; $i < 3; $i++)
-                {
-                    if($this->getColor() == Color::COLOR_BLACK)
-                    {
-                        $step = -$i;
-                    }
-                    else
-                    {
-                        $step = $i;
-                    }
-                    
-                    $possibleField = new Field(array($currentX, $currentY + $step));
-                
-                    $obstacleCheck = $board->getPieceAt($possibleField);
-                    
-                    if(isset($obstacleCheck))
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        $fields[] = $possibleField;
-                    }
-                }
-            }
-            else
-            {
-                $i = 1;
                 if($this->getColor() == Color::COLOR_BLACK)
                 {
-                    $i = -$i;
+                    $step = -$i;
                 }
-                $possibleField = new Field(array($currentX, $currentY + $i));
-                
-                $obstacleCheck = $board->getPieceAt($possibleField);
-
-                if(!isset($obstacleCheck))
+                else
                 {
-                    $fields[] = $possibleField;
+                    $step = $i;
                 }
+
+                $fields = $this->ValidateMove($fields, array($currentX, $currentY + $step));
             }
-        }
-        catch (FieldException $ex){}
-        
-        //diagonal capturing
-        try
-        {
+        } else {
+
+            $i = 1;
             if($this->getColor() == Color::COLOR_BLACK)
             {
-                $step = -1;
+                $i = -$i;
             }
-            else
-            {
-                $step = 1;
-            }
-            
-            foreach (array(1, -1) as $xMovement)
-            {
-                $possibleField = new Field(array($currentX + $xMovement, $currentY + $step));
 
-                $obstacleCheck = $board->getPieceAt($possibleField);
-
-                if(isset($obstacleCheck) && $obstacleCheck->getColor() != $this->getColor())
-                {
-                    $fields[] = $possibleField;
-                }
-            }
+            $fields = $this->ValidateMove($fields, array($currentX, $currentY + $i));
         }
-        catch (FieldException $ex){}
+        
+        //diagonal capturing
+        if($this->getColor() == Color::COLOR_BLACK)
+        {
+            $step = -1;
+        } else {
+            $step = 1;
+        }
+
+        foreach (array(1, -1) as $xMovement)
+        {
+            $fields = $this->ValidateAttack($fields, array($currentX + $xMovement, $currentY + $step));
+        }
+
 
         return $fields;
     }

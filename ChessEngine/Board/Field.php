@@ -2,8 +2,8 @@
 
 namespace ChessEngine\Board;
 
-use ChessEngine\StateValidator;
 use ChessEngine\Exceptions\FieldException;
+use ChessEngine\States\StateValidator;
 
 class Field
 {

@@ -29,11 +29,11 @@ class Knight extends Piece
 
                     $obstacleCheck = $board->getPieceAt($possibleField);
 
-                    if(isset($obstacleCheck) && $obstacleCheck->getColor() == $this->getColor())
+                    if($obstacleCheck && $obstacleCheck->getColor() == $this->getColor())
                     {
                         break;
                     }
-                    else if (($obstacleCheck) && $obstacleCheck->getColor() != $this->getColor())
+                    else if ($obstacleCheck && $obstacleCheck->getColor() != $this->getColor())
                     {
                         $fields[] = $possibleField;
                         break;

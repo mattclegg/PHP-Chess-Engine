@@ -1,6 +1,6 @@
 <?php
 
-namespace ChessEngine;
+namespace ChessEngine\States;
 
 use ChessEngine\Helpers\Color;
 
@@ -70,7 +70,6 @@ class StateValidator
 
     public static function isValidFieldArray($array)
     {
-        return count($array) == 2 && $array[0] >= 0 && $array[0] <= 7
-        && $array[1] >= 0 && $array[1] <= 7;
+        return count($array) == 2 && ($array[0] >= 0) && ($array[0] <= 7) && ($array[1] >= 0) && ($array[1] <= 7);
     }
 }

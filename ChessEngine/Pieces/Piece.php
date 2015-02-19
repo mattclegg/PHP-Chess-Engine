@@ -4,6 +4,8 @@ namespace ChessEngine\Pieces;
 
 use ChessEngine\Board\Field;
 use ChessEngine\Exceptions\InvalidPieceNameException;
+use ChessEngine\States\StateValidator;
+use ChessEngine\Game;
 
 abstract class Piece
 {
@@ -42,7 +44,13 @@ abstract class Piece
     public abstract function move(Field $newField);
     
     public abstract function getMovableFields();
-    
+
+    public function isValidMove(array $array) {
+        return StateValidator::isValidFieldArray($array);
+    }
+
+
+
     //moves
     public function isDiagonalMove(Field $newField)
     {
@@ -89,5 +97,35 @@ abstract class Piece
             throw new InvalidPieceNameException;
         }
     }
-    
+
+
+    public function ValidateMove($fields, $proposedMove) {
+        if($this->isValidMove($proposedMove)) {
+            $possibleField = new Field($proposedMove);
+
+            $board = Game::getInstance()->getBoard();
+
+            if(!$board->getPieceAt($possibleField)) {
+                $fields[] = $possibleField->toAlgebraicNotation();
+            } else {
+                $fields = $this->ValidateAttack($fields, $proposedMove);
+            }
+        }
+        return $fields;
+    }
+
+    public function ValidateAttack($fields, $proposedMove) {
+        if($this->isValidMove($proposedMove)) {
+            $possibleField = new Field($proposedMove);
+
+            $board = Game::getInstance()->getBoard();
+
+            $attackPiece = $board->getPieceAt($possibleField);
+
+            if($attackPiece && $this->getColor() != $attackPiece->getColor()) {
+                $fields[] = $possibleField->toAlgebraicNotation();
+            }
+        }
+        return $fields;
+    }
 }

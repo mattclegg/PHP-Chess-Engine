@@ -1,26 +1,26 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <style>
-        table {
-            border: 1px solid black;
-        }
-        table td {
-            width: 100px;
-            height: 100px;
-            border: 1px solid black;
-        }
-    </style>
+    <base href="/"><!--[if lte IE 6]></base><![endif]-->
+    <title>Home</title>
+    <meta name="viewport" id="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=10.0,initial-scale=1.0" />
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" data-skrollr-stylesheet/>
+    <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+    <!--[if IE]><link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" /><![endif]-->
+    <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
-<body><?php
+<?php
 
 //echo "Simple usage: <br /><br /><br />";
 
 include 'autoload.php';
 
+use ChessEngine\Game;
+
 use ChessEngine\States\GameState;
 use ChessEngine\Pieces\PieceFactory;
 use ChessEngine\Board\Field;
-use ChessEngine\Game;
+use ChessEngine\Helpers\Color;
 
 function debug($x){
     print("<pre>");
@@ -29,14 +29,39 @@ function debug($x){
 }
 
 $GameState = new GameState();
-$GameState->addPiece(PieceFactory::createPiece('rook', 'w', new Field('a1')));
-$GameState->addPiece(PieceFactory::createPiece('knight', 'w', new Field('b1')));
-$GameState->addPiece(PieceFactory::createPiece('bishop', 'w', new Field('c1')));
-$GameState->addPiece(PieceFactory::createPiece('queen', 'w', new Field('d1')));
-$GameState->addPiece(PieceFactory::createPiece('king', 'w', new Field('e1')));
-$GameState->addPiece(PieceFactory::createPiece('bishop', 'w', new Field('f1')));
-$GameState->addPiece(PieceFactory::createPiece('knight', 'w', new Field('g1')));
-$GameState->addPiece(PieceFactory::createPiece('rook', 'w', new Field('h1')));
+$GameState->addPiece(PieceFactory::createPiece('rook', Color::COLOR_WHITE, new Field('a1')));
+$GameState->addPiece(PieceFactory::createPiece('knight', Color::COLOR_WHITE, new Field('b1')));
+$GameState->addPiece(PieceFactory::createPiece('bishop', Color::COLOR_WHITE, new Field('c1')));
+$GameState->addPiece(PieceFactory::createPiece('queen', Color::COLOR_WHITE, new Field('d1')));
+$GameState->addPiece(PieceFactory::createPiece('king', Color::COLOR_WHITE, new Field('e1')));
+$GameState->addPiece(PieceFactory::createPiece('bishop', Color::COLOR_WHITE, new Field('f1')));
+$GameState->addPiece(PieceFactory::createPiece('knight', Color::COLOR_WHITE, new Field('g1')));
+$GameState->addPiece(PieceFactory::createPiece('rook', Color::COLOR_WHITE, new Field('h1')));
+$GameState->addPiece(PieceFactory::createPiece('pawn', Color::COLOR_WHITE, new Field('a2')));
+$GameState->addPiece(PieceFactory::createPiece('pawn', Color::COLOR_WHITE, new Field('b2')));
+$GameState->addPiece(PieceFactory::createPiece('pawn', Color::COLOR_WHITE, new Field('c2')));
+$GameState->addPiece(PieceFactory::createPiece('pawn', Color::COLOR_WHITE, new Field('d2')));
+$GameState->addPiece(PieceFactory::createPiece('pawn', Color::COLOR_WHITE, new Field('e2')));
+$GameState->addPiece(PieceFactory::createPiece('pawn', Color::COLOR_WHITE, new Field('f2')));
+$GameState->addPiece(PieceFactory::createPiece('pawn', Color::COLOR_WHITE, new Field('g2')));
+$GameState->addPiece(PieceFactory::createPiece('pawn', Color::COLOR_WHITE, new Field('h2')));
+
+$GameState->addPiece(PieceFactory::createPiece('rook', Color::COLOR_BLACK, new Field('a8')));
+$GameState->addPiece(PieceFactory::createPiece('knight', Color::COLOR_BLACK, new Field('b8')));
+$GameState->addPiece(PieceFactory::createPiece('bishop', Color::COLOR_BLACK, new Field('c8')));
+$GameState->addPiece(PieceFactory::createPiece('queen', Color::COLOR_BLACK, new Field('d8')));
+$GameState->addPiece(PieceFactory::createPiece('king', Color::COLOR_BLACK, new Field('e8')));
+$GameState->addPiece(PieceFactory::createPiece('bishop', Color::COLOR_BLACK, new Field('f8')));
+$GameState->addPiece(PieceFactory::createPiece('knight', Color::COLOR_BLACK, new Field('g8')));
+$GameState->addPiece(PieceFactory::createPiece('rook', Color::COLOR_BLACK, new Field('h8')));
+$GameState->addPiece(PieceFactory::createPiece('pawn', Color::COLOR_BLACK, new Field('a7')));
+$GameState->addPiece(PieceFactory::createPiece('pawn', Color::COLOR_BLACK, new Field('b7')));
+$GameState->addPiece(PieceFactory::createPiece('pawn', Color::COLOR_BLACK, new Field('c7')));
+$GameState->addPiece(PieceFactory::createPiece('pawn', Color::COLOR_BLACK, new Field('d7')));
+$GameState->addPiece(PieceFactory::createPiece('pawn', Color::COLOR_BLACK, new Field('e7')));
+$GameState->addPiece(PieceFactory::createPiece('pawn', Color::COLOR_BLACK, new Field('f7')));
+$GameState->addPiece(PieceFactory::createPiece('pawn', Color::COLOR_BLACK, new Field('g7')));
+$GameState->addPiece(PieceFactory::createPiece('pawn', Color::COLOR_BLACK, new Field('h7')));
 
 
 $game = Game::getInstance();
@@ -46,11 +71,31 @@ include 'testHtml.php';
 ?>
 
 <script>
+
+    <?php
+        $peices = array();
+
+    ?>
+
     var pieces = new Array();
     <?php foreach($game->getBoard()->getAllPieces() as $piece) {
-        echo 'pieces["' . $piece->getCurrentField()->getFieldIdentifier() . '"] = "' . $piece->getColor() . '-'
+        echo 'pieces:"' . $piece->getCurrentField()->getFieldIdentifier() . '"] = "' . $piece->getColor() . '-'
                 . join('', array_slice(explode('\\', get_class($piece)), -1)) . '";' . "\n";
-    } ?>
+
+            $peices[$piece->getCurrentField()->toAlgebraicNotation()] = array(
+                'name' => join('', array_slice(explode('\\', get_class($piece)), -1)),
+                'color' => $piece->getColor(),
+                'moves' => $piece->getMovableFields()
+            );
+
+    }
+        echo json_encode($peices, JSON_PRETTY_PRINT);
+
+    ?>
+
+    $('td').css({
+        'background-size': ($('td').first().width() * 1.5) + 427
+    });
 
     for (var i in pieces)
     {
@@ -60,12 +105,8 @@ include 'testHtml.php';
         {
             color = '#d4d4d4';
         }
-        $('#' + i).css({'background-color': color});
-        $('#' + i).text(pieces[i]);
+        $('#' + i).addClass(pieces[i]);
     }
-
-
-
 
 </script>
 </body>

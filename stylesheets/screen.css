@@ -1,7 +1,3 @@
-/* Welcome to Compass.
- * In this file you should write your main styles. (or centralize your imports)
- * Import this file using the following HTML or equivalent:
- * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 /* line 5, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -65,4 +61,67 @@ a img {
 /* line 116, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
+}
+
+/* line 10, ../sass/screen.scss */
+table {
+  border: 1px solid #F5F5F5;
+}
+/* line 13, ../sass/screen.scss */
+table tr td {
+  width: 100px;
+  height: 100px;
+  background-color: #FFF;
+  background-image: url(../images/1280px-Chess_Pieces_Sprite.svg.png);
+  background-position: -100% -100%;
+  background-repeat: no-repeat;
+}
+/* line 20, ../sass/screen.scss */
+table tr td[class^="w-"] {
+  background-position-y: 0;
+}
+/* line 23, ../sass/screen.scss */
+table tr td[class^="b-"] {
+  background-position-y: 100%;
+}
+/* line 26, ../sass/screen.scss */
+table tr td[class$="Pawn"] {
+  background-position-x: 100%;
+}
+/* line 29, ../sass/screen.scss */
+table tr td[class$="Rook"] {
+  background-position-x: 80%;
+}
+/* line 32, ../sass/screen.scss */
+table tr td[class$="Knight"] {
+  background-position-x: 60%;
+}
+/* line 35, ../sass/screen.scss */
+table tr td[class$="Bishop"] {
+  background-position-x: 40%;
+}
+/* line 38, ../sass/screen.scss */
+table tr td[class$="Queen"] {
+  background-position-x: 20%;
+}
+/* line 41, ../sass/screen.scss */
+table tr td[class$="King"] {
+  background-position-x: 0;
+}
+/* line 45, ../sass/screen.scss */
+table tr:nth-child(even) td:nth-child(odd), table tr:nth-child(odd) td:nth-child(even) {
+  background-color: #717171;
+}
+/* line 48, ../sass/screen.scss */
+table tr:nth-child(even) td:nth-child(odd):hover, table tr:nth-child(odd) td:nth-child(even):hover {
+  background-color: rgba(113, 113, 113, 0.8);
+  -moz-box-shadow: 0 0 65px rgba(26, 29, 229, 0.5) inset;
+  -webkit-box-shadow: 0 0 65px rgba(26, 29, 229, 0.5) inset;
+  box-shadow: 0 0 65px rgba(26, 29, 229, 0.5) inset;
+}
+/* line 55, ../sass/screen.scss */
+table tr:nth-child(even) td:nth-child(even):hover, table tr:nth-child(odd) td:nth-child(odd):hover {
+  -moz-box-shadow: 0 0 65px rgba(26, 29, 229, 0.6) inset;
+  -webkit-box-shadow: 0 0 65px rgba(26, 29, 229, 0.6) inset;
+  box-shadow: 0 0 65px rgba(26, 29, 229, 0.6) inset;
 }

@@ -1,6 +1,60 @@
-/* Welcome to Compass.
- * In this file you should write your main styles. (or centralize your imports)
- * Import this file using the following HTML or equivalent:
- * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
-
 @import "compass/reset";
+@import "compass/css3/box-shadow";
+
+
+$black: #717171;
+$white: #FFF;
+$grey: #F5F5F5;
+$highlight: #1A1DE5;
+
+table {
+  border: 1px solid $grey;
+  tr {
+    td {
+      width: 100px;
+      height: 100px;
+      background-color:$white;
+      background-image:url(../images/1280px-Chess_Pieces_Sprite.svg.png);
+      background-position:-100% -100%;
+      background-repeat: no-repeat;
+      &[class^="w-"] {
+        background-position-y:0;
+      }
+      &[class^="b-"] {
+        background-position-y:100%;
+      }
+      &[class$="Pawn"] {
+        background-position-x:100%;
+      }
+      &[class$="Rook"] {
+        background-position-x:80%;
+      }
+      &[class$="Knight"] {
+        background-position-x:60%;
+      }
+      &[class$="Bishop"] {
+        background-position-x:40%;
+      }
+      &[class$="Queen"] {
+        background-position-x:20%;
+      }
+      &[class$="King"] {
+        background-position-x:0;
+      }
+    }
+    &:nth-child(even) td:nth-child(odd),
+    &:nth-child(odd) td:nth-child(even) {
+      background-color:$black;
+      &:hover {
+        background-color:rgba($black, 0.8);
+        @include box-shadow(0 0 65px rgba($highlight, 0.5) inset);
+      }
+    }
+    &:nth-child(even) td:nth-child(even),
+    &:nth-child(odd) td:nth-child(odd) {
+      &:hover {
+        @include box-shadow(0 0 65px rgba($highlight, 0.6) inset);
+      }
+    }
+  }
+}

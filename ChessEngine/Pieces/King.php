@@ -5,6 +5,7 @@ namespace ChessEngine\Pieces;
 use ChessEngine\Board\Field;
 use ChessEngine\Exceptions\FieldException;
 use ChessEngine\Game;
+use ChessEngine\States\StateValidator;
 
 class King extends Piece
 {
@@ -30,41 +31,13 @@ class King extends Piece
 
         for ($i = -1; $i <= 1; $i++)
         {
-
-            var_dump($currentY - 1);
-
-            //fields beneath
-            $possibleField = new Field(array($currentX + $i, $currentY - 1));
-
-
-            $obstacleCheck = $board->getPieceAt($possibleField);
-
-            if($obstacleCheck && $obstacleCheck->getColor() != $this->getColor())
-            {
-                $fields[] = $possibleField;
-            }
-
-            //fields above
-            $possibleField = new Field(array($currentX + $i, $currentY + 1));
-
-            $obstacleCheck = $board->getPieceAt($possibleField);
-
-            if($obstacleCheck && $obstacleCheck->getColor() != $this->getColor())
-            {
-                $fields[] = $possibleField;
-            }
+            $fields = $this->ValidateMove($fields, array($currentX + $i, $currentY - 1));
+            $fields = $this->ValidateMove($fields, array($currentX + $i, $currentY + 1));
 
             //fields in same y coordinate
             if($i != 0)
             {
-                $possibleField = new Field(array($currentX + $i, $currentY));
-
-                $obstacleCheck = $board->getPieceAt($possibleField);
-
-                if($obstacleCheck && $obstacleCheck->getColor() != $this->getColor())
-                {
-                    $fields[] = $possibleField;
-                }
+                $fields = $this->ValidateMove($fields, array($currentX + $i, $currentY));
             }
 
         }

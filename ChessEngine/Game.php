@@ -23,7 +23,7 @@ class Game
     /**
      * Get board
      *
-     * @return ChessEngine\Board\Board
+     * @return Board
      */
     public function getBoard()
     {
@@ -33,7 +33,7 @@ class Game
     /**
      * Get instance of the game
      *
-     * @return ChessEngine\Game
+     * @return Game
      */
     public static function getInstance()
     {
@@ -46,7 +46,7 @@ class Game
     /**
      * Set initial game state
      *
-     * @param ChessEngine\States\GameState $gameState Initial game state
+     * @param GameState $gameState Initial game state
      */
     public function setState(GameState $gameState)
     {
